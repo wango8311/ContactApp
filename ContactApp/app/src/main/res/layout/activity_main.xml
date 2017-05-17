@@ -25,9 +25,9 @@
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
         android:ems="10"
-        android:id="@+id/editText_name"
-        android:layout_alignBottom="@+id/textView"
-        android:layout_alignStart="@+id/editText" />
+        android:id="@+id/editText1"
+        android:layout_alignTop="@+id/textView"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -44,18 +44,8 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Mobile"
         android:id="@+id/textView2"
-        android:layout_alignBottom="@+id/editText"
-        android:layout_alignEnd="@+id/textView"
-        android:layout_alignParentStart="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="phone"
-        android:ems="10"
-        android:id="@+id/editText"
-        android:layout_below="@+id/editText_name"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/editText1" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -63,15 +53,22 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Felon?"
         android:id="@+id/textView3"
-        android:layout_marginTop="28dp"
-        android:layout_below="@+id/editText"
+        android:layout_below="@+id/editText3"
         android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/editText3"
+        android:layout_centerVertical="true"
+        android:layout_alignEnd="@+id/textView" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/editText2"
-        android:layout_alignBottom="@+id/textView3"
-        android:layout_alignEnd="@+id/textView2" />
+        android:layout_below="@+id/editText1"
+        android:layout_alignStart="@+id/editText3"
+        android:layout_alignEnd="@+id/editText1" />
 
 </RelativeLayout>
