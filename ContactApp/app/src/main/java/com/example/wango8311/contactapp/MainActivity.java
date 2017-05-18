@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     EditText editName1;
     EditText editName2;
     EditText editName3;
+    EditText editName4;
     Button btnAddData;
     String[] fields;
 
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         editName1 = (EditText) findViewById(R.id.editText1);
         editName2 = (EditText) findViewById(R.id.editText2);
         editName3 = (EditText) findViewById(R.id.editText3);
-
+        editName4 = (EditText) findViewById(R.id.searchParam);
 
     }
 
@@ -39,24 +40,22 @@ public class MainActivity extends AppCompatActivity {
         if (isInserted == true){
             Log.d("MyContact", "Sucess inserting data");
             //insert toast msg here
+            Toast.makeText(v.getContext(), "Added!", Toast.LENGTH_LONG).show();
+           }
 
-            Toast.makeText(v.getContext(), "YAY", Toast.LENGTH_LONG).show();
-            showMessage("GTG", "ok");
-        }
-
-        else Log.d("MyContact", "Failure inserting data");
+        else {
+            Log.d("MyContact", "Failure inserting data");
             //insert toast msg here
-
-            Toast.makeText(v.getContext(), "too bad", Toast.LENGTH_LONG).show();
-            showMessage("nah", "nope");
+            Toast.makeText(v.getContext(), "Failure to Add", Toast.LENGTH_LONG).show();
+            }
     }
 
-    public void viewData(){
+    public void viewData(View v){
         Cursor res = myDb.getAllData();
         if (res.getCount() == 0){
             //IT BE EMPTY YO
-            showMessage("its empty","no datuh in DB");
-            Toast.makeText(getApplicationContext(), "no be datas", Toast.LENGTH_LONG).show();
+            showMessage("Error","There doesn't seem to be anything here");
+            Toast.makeText(v.getContext(), "Database is empty", Toast.LENGTH_LONG).show();
             return;
         }
         StringBuffer buffer = new StringBuffer();
@@ -64,16 +63,53 @@ public class MainActivity extends AppCompatActivity {
         //setup loop
         for (int i=0; i< res.getCount(); i++){
             for (int j = 1; j<=3; j++){
-                buffer.append(fields[j-1]);
+                //buffer.append(fields[j-1]);
                 buffer.append(res.getString(j));
-                buffer.append("/n");
+                buffer.append("\n");
 
             }
             res.moveToNext();
+            buffer.append("\n");
         }
-    showMessage("datafound", buffer.toString());
-        Toast.makeText(getApplicationContext(), "df", Toast.LENGTH_LONG).show();
-    System.out.println(buffer);
+        showMessage("Contacts:", buffer.toString());
+    Toast.makeText(v.getContext(), "Data found, now dumping", Toast.LENGTH_LONG).show();
+
+    //System.out.println(buffer);
+    }
+
+    public void searchData(View v){
+        Cursor res = myDb.getAllData();
+        if (res.getCount() == 0){
+            //IT BE EMPTY YO
+            showMessage("Error","There doesn't seem to be anything here");
+            Toast.makeText(v.getContext(), "Database is empty", Toast.LENGTH_LONG).show();
+            return;
+        }
+        StringBuffer buffer = new StringBuffer();
+        res.moveToFirst();
+        int o =0;
+        //setup loop
+        for (int i=0; i< res.getCount(); i++){
+            if (res.getString(1).equals(editName4.getText().toString())) {
+                for (int j = 1; j<=3; j++){
+
+                    buffer.append(res.getString(j));
+                    buffer.append("\n");
+
+                }
+                o=1;
+            }
+            res.moveToNext();
+
+        }
+        if (o==1) {
+            showMessage("Result:", buffer.toString());
+            Toast.makeText(v.getContext(), "Person Found", Toast.LENGTH_LONG).show();
+        }
+        else{
+            showMessage("Error", "No one by this name");
+            Toast.makeText(v.getContext(), "Person Not Found", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void showMessage(String error, String s){
