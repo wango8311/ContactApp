@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         editName2 = (EditText) findViewById(R.id.editText2);
         editName3 = (EditText) findViewById(R.id.editText3);
         editName4 = (EditText) findViewById(R.id.searchParam);
-
+        fields= new String[]{"Name: " ,"Number: ", "Gender: " };
     }
 
     protected void addData (View v){
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         //setup loop
         for (int i=0; i< res.getCount(); i++){
             for (int j = 1; j<=3; j++){
-                //buffer.append(fields[j-1]);
+                buffer.append(fields[j-1]);
                 buffer.append(res.getString(j));
                 buffer.append("\n");
 
