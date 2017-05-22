@@ -88,9 +88,10 @@
         android:layout_height="wrap_content"
         android:text="Search"
         android:id="@+id/button3"
-        android:onClick="searchData"
+        android:onClick="sch"
         android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/button" />
+        android:layout_alignEnd="@+id/button"
+        android:nestedScrollingEnabled="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -99,5 +100,17 @@
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/editText3"
         android:layout_alignEnd="@+id/button2" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:id="@+id/button5"
+        android:onClick="x"
+        android:text="DO NOT CLICK"
+        android:layout_below="@+id/button2"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/searchParam"
+        android:layout_alignStart="@+id/button2" />
 
 </RelativeLayout>

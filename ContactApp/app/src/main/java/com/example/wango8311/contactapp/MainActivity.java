@@ -1,5 +1,6 @@
 package com.example.wango8311.contactapp;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -16,7 +17,8 @@ public class MainActivity extends AppCompatActivity {
     EditText editName2;
     EditText editName3;
     EditText editName4;
-    Button btnAddData;
+
+    Button btnSearch;
     String[] fields;
 
     @Override
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         editName2 = (EditText) findViewById(R.id.editText2);
         editName3 = (EditText) findViewById(R.id.editText3);
         editName4 = (EditText) findViewById(R.id.searchParam);
+
         fields= new String[]{"Name: " ,"Number: ", "Gender: " };
     }
 
@@ -76,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
 
     //System.out.println(buffer);
     }
-
     public void searchData(View v){
         Cursor res = myDb.getAllData();
         if (res.getCount() == 0){
@@ -92,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i=0; i< res.getCount(); i++){
             if (res.getString(1).equals(editName4.getText().toString())) {
                 for (int j = 1; j<=3; j++){
-
+                    buffer.append(fields[j-1]);
                     buffer.append(res.getString(j));
                     buffer.append("\n");
 
@@ -110,6 +112,17 @@ public class MainActivity extends AppCompatActivity {
             showMessage("Error", "No one by this name");
             Toast.makeText(v.getContext(), "Person Not Found", Toast.LENGTH_LONG).show();
         }
+    }
+    public void x(View v){
+
+        showMessage("Ya Dun for", "really? you just had to click this button.");
+
+
+        //System.out.println(buffer);
+    }
+    public void sch(View v) {
+        // Do something in response to button
+        startActivity(new Intent(MainActivity.this, Main2Activity.class));
     }
 
     private void showMessage(String error, String s){
