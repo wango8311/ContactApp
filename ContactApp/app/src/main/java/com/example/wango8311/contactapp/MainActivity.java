@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void x(View v){
 
-        showMessage("Ya Dun for", "really? you just had to click this button.");
+        showMessage("Ya Dun for", "Really? You just had to click this button. I'm going to hunt you down, and kill you in your sleep. Oh, and I'm going to kick your cat. And do it all with a smile.:)");
 
 
         //System.out.println(buffer);
